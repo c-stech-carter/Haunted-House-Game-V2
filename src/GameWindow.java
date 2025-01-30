@@ -92,6 +92,8 @@ public class GameWindow extends Application {
         primaryStage.show();
     }
 
+
+    //When inventory items are found, the description for their discovery is defined here
     private void initializeItemDiscoveryDescriptions() {
         itemDiscoveryDescriptions.put("Rusty Key", "You search the area and notice a small key under the rug, you pick it up.");
         itemDiscoveryDescriptions.put("Green Crystal", "You also notice a small green crystal.  It looks important so you take it with you.");
@@ -102,6 +104,7 @@ public class GameWindow extends Application {
     private void initializeRooms() {
         rooms = new HashMap<>();
 
+        //The front yard, the first area in the game
         Room frontYard = new Room("Front Yard", "The last thing you remember is an intense pain to " +
                 "the back of your head, and after that, darkness for a time, where you were barely aware of yourself.   " +
                 "Beyond that, there are no memories, but echoes still dance in your mind, unable to be fully retrieved.    " +
@@ -133,12 +136,12 @@ public class GameWindow extends Application {
                 "file:src/resources/image/FrontHall.png",
                 new String[]{"Dining Room", "Parlor", "Upstairs Loft"}, true, new String[]{}, new String[]{"Rusty Key"});
 
-        Room parlor = new Room("Placeholder", "Placeholder",
+        Room parlor = new Room("Parlor", "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/Parlor.png",
                 new String[]{"Front Hall", "Piano"}, false, new String[]{}, new String[]{});
 
-        Room diningRoom = new Room("Placeholder", "Placeholder",
+        Room diningRoom = new Room("Dining Room", "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/DiningRoom.png",
                 new String[]{"Front Hall", "Kitchen"}, false, new String[]{}, new String[]{});
@@ -161,7 +164,51 @@ public class GameWindow extends Application {
         Room upstairs = new Room("Upstairs Loft", "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/Upstairs.png",
-                new String[]{"Front Hall", "Master Bedroom", "Guest Bedroom", "Servants Bedroom"}, false, new String[]{}, new String[]{});
+                new String[]{"Front Hall", "Master Bedroom", "Guest Bedroom", "Servants Quarters"}, false, new String[]{}, new String[]{});
+
+        //Blank room for following a pattern to add more rooms:
+        Room masterBedroom = new Room("Master Bedroom", "Placeholder",
+                "Placeholder",
+                "file:src/resources/image/MasterBedroom.png",
+                new String[]{"Library", "Upstairs Loft", "Small Washroom"}, false, new String[]{}, new String[]{});
+
+        Room libraryRoom = new Room("Library", "Placeholder",
+                "Placeholder",
+                "file:src/resources/image/LibraryRoom.png",
+                new String[]{"Master Bedroom"}, false, new String[]{}, new String[]{});
+
+        Room washroom = new Room("Small Washroom", "Placeholder",
+                "Placeholder",
+                "file:src/resources/image/Washroom.png",
+                new String[]{"Master Bedroom"}, false, new String[]{}, new String[]{});
+
+        Room guestBedroom = new Room("Guest Bedroom", "Placeholder",
+                "Placeholder",
+                "file:src/resources/image/GuestBedroom.png",
+                new String[]{"Closet Stairway", "Upstairs Loft"}, false, new String[]{}, new String[]{});
+
+        Room stairway = new Room("Closet Stairway", "Placeholder",
+                "Placeholder",
+                "file:src/resources/image/Stairway.png",
+                new String[]{"Attic", "Guest Bedroom"}, false, new String[]{}, new String[]{});
+
+        Room attic = new Room("Attic", "Placeholder",
+                "Placeholder",
+                "file:src/resources/image/Attic.png",
+                new String[]{"Closet Stairway"}, false, new String[]{}, new String[]{});
+
+        Room servantRoom = new Room("Servants Quarters", "Placeholder",
+                "Placeholder",
+                "file:src/resources/image/ServantBedroom.png",
+                new String[]{"Upstairs Loft"}, false, new String[]{}, new String[]{});
+
+
+        //This is the final area of the game, after the player has collected all the necessary items
+        Room piano = new Room("Piano", "Placeholder",
+                "Placeholder",
+                "file:src/resources/image/Hallway.png",
+                new String[]{"Small Door"}, false, new String[]{}, new String[]{});
+
 
         //Blank room for following a pattern to add more rooms:
         Room template = new Room("Placeholder", "Placeholder",
@@ -178,6 +225,15 @@ public class GameWindow extends Application {
         rooms.put("Kitchen", kitchen);
         rooms.put("Basement", basement);
         rooms.put("Wine Cellar", wineCellar);
+        rooms.put("Upstairs Loft", upstairs);
+        rooms.put("Master Bedroom", masterBedroom);
+        rooms.put("Library", libraryRoom);
+        rooms.put("Small Washroom", washroom);
+        rooms.put("Guest Bedroom", guestBedroom);
+        rooms.put("Closet Stairway", stairway);
+        rooms.put("Attic", attic);
+        rooms.put("Servants Quarters", servantRoom);
+        rooms.put("Piano", piano);
     }
 
     private void updateRoom(String roomName) {
@@ -190,7 +246,7 @@ public class GameWindow extends Application {
                 inventory.removeAll(requiredItems);
                 updateInventoryUI();
                 room.unlock();
-                descriptionArea.appendText("\nYou used " + String.join(", ", requiredItems) + " to unlock " + roomName + "!");
+                descriptionArea.appendText("\nYou used " + String.join(", ", requiredItems) + " to unlock the " + roomName + "!");
                 // Delay the actual room update to allow time for message display
                 PauseTransition pause = new PauseTransition(Duration.seconds(2));
                 pause.setOnFinished(e -> updateRoomAfterUnlock(room));
@@ -230,7 +286,7 @@ public class GameWindow extends Application {
 
         List<String> items = new ArrayList<>(currentRoom.getItems());
         if (items.isEmpty()) {
-            descriptionArea.setText("You search the room but find nothing of interest.");
+            descriptionArea.setText("You search the area but find nothing of interest.");
             return;
         }
 
