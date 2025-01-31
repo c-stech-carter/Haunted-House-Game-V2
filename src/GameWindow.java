@@ -112,7 +112,7 @@ public class GameWindow extends Application {
     //When inventory items are found, the description for their discovery is defined here
     private void initializeItemDiscoveryDescriptions() {
         itemDiscoveryDescriptions.put("Rusty Key", "You search the area and notice a small key under the rug, you pick it up.");
-        itemDiscoveryDescriptions.put("Green Crystal", "You also notice a small green crystal.  It looks important so you take it with you.");
+        itemDiscoveryDescriptions.put("Green Crystal", "\nYou also notice a small green crystal.  It looks important so you take it with you.");
         itemDiscoveryDescriptions.put("Mysterious Note", "As you rummage through the papers on the table, you find a torn piece of paper with strange symbols.");
     }
 
@@ -289,9 +289,10 @@ public class GameWindow extends Application {
                     descriptionArea.setText("\tThe rusty key you found under the mat fits into the keyhole" +
                             " of the foreboding front door of the house. The door unlocks and you step inside. " +
                             "To your astonishment, the key disintegrates, as if made from ash, and " +
-                            "completely disappears. (Click to continue...)");
+                            "completely disappears. \n\n(Click to continue...)");
                 } else {
-                    descriptionArea.setText("\nYou used " + String.join(", ", requiredItems) + " to unlock the " + roomName + "!");
+                    descriptionArea.setText("\nYou used " + String.join(", ", requiredItems) + " to unlock the " + roomName + "!" +
+                            "(\nClick to continue..)");
                 }
 
                 scene.setOnMouseClicked(e -> {
@@ -418,7 +419,7 @@ public class GameWindow extends Application {
                     if (item.equals("Green Crystal")) {
                         description = "The small green crystal glows faintly in your hand. It hums with a strange energy, as if reacting to your presence.";
                     } else if (item.equals("Rusty Key")) {
-                        description = "A small, rusty key. It looks fragile, but it might still be useful for unlocking something.";
+                        description = "A small, rusty key. It looks fragile. It must be for the front door.";
                     } else if (item.equals("Mysterious Note")) {
                         description = "A torn piece of paper covered in strange symbols. You can't make sense of it... yet.";
                     } else {
