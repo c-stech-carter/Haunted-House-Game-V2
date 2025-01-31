@@ -1,4 +1,4 @@
-import javafx.animation.PauseTransition;
+import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,6 +14,7 @@ import javafx.util.Duration;
 import java.util.*;
 
 public class GameWindow extends Application {
+    public static Scene scene;
 
     private Map<String, Room> rooms;
     private Room currentRoom;
@@ -24,6 +25,9 @@ public class GameWindow extends Application {
     private List<String> inventory = new ArrayList<>();
     private Set<String> foundItems = new HashSet<>(); // Tracks items already found
     private Map<String, String> itemDiscoveryDescriptions = new HashMap<>();
+    private MenuBar menuBar;
+    private ContextMenu contextMenu;
+
 
     @Override
     public void start(Stage primaryStage) {
@@ -41,7 +45,7 @@ public class GameWindow extends Application {
         gameArea.setAlignment(Pos.CENTER);
         root.setCenter(gameArea);
 
-        MenuBar menuBar = new MenuBar();
+        menuBar = new MenuBar();
         Menu actionsMenu = new Menu("Actions");
         MenuItem searchItem = new MenuItem("Search for Items");
         searchItem.setOnAction(e -> handleSearchAction());
@@ -52,6 +56,14 @@ public class GameWindow extends Application {
         exitsMenu = new Menu("Exits");
         menuBar.getMenus().addAll(actionsMenu, exitsMenu);
         root.setTop(menuBar);
+
+        contextMenu = new ContextMenu();
+        MenuItem searchContextItem = new MenuItem("Search for Items");
+        searchContextItem.setOnAction(e -> handleSearchAction());
+        MenuItem lookContextItem = new MenuItem("Look Around");
+        lookContextItem.setOnAction(e -> handleLookAction());
+
+        contextMenu.getItems().addAll(searchContextItem, lookContextItem);
 
         descriptionArea = new TextArea();
         descriptionArea.setWrapText(true);
@@ -85,7 +97,9 @@ public class GameWindow extends Application {
         initializeItemDiscoveryDescriptions();
         updateRoom("Front Yard");
 
-        Scene scene = new Scene(root, 1320, 950, Color.DIMGRAY);
+        scene = new Scene(root, 1320, 950, Color.DIMGRAY);
+        scene.setOnContextMenuRequested(e -> {
+            contextMenu.show(scene.getWindow(), e.getScreenX(), e.getScreenY());});
         primaryStage.setTitle("Haunted House Game");
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
@@ -246,11 +260,27 @@ public class GameWindow extends Application {
                 inventory.removeAll(requiredItems);
                 updateInventoryUI();
                 room.unlock();
-                descriptionArea.appendText("\nYou used " + String.join(", ", requiredItems) + " to unlock the " + roomName + "!");
-                // Delay the actual room update to allow time for message display
-                PauseTransition pause = new PauseTransition(Duration.seconds(2));
-                pause.setOnFinished(e -> updateRoomAfterUnlock(room));
-                pause.play();
+
+                // Temporarily disable menus
+                menuBar.setDisable(true);
+
+                contextMenu.getItems().clear();
+
+                if (roomName.equalsIgnoreCase("Front Hall")) {
+                    descriptionArea.setText("\tThe rusty key you found under the mat fits into the keyhole" +
+                            " of the foreboding front door of the house. The door unlocks and you step inside. " +
+                            "To your astonishment, the key disintegrates, as if made from ash, and " +
+                            "completely disappears. (Click to continue...)");
+                } else {
+                    descriptionArea.setText("\nYou used " + String.join(", ", requiredItems) + " to unlock the " + roomName + "!");
+                }
+
+                scene.setOnMouseClicked(e -> {
+                    scene.setOnMouseClicked(null);
+                    updateRoomAfterUnlock(room);
+                    menuBar.setDisable(false);
+                });
+
                 return;
             } else {
                 descriptionArea.setText("The door to " + roomName + " is locked. You need: " + requiredItems);
@@ -258,22 +288,73 @@ public class GameWindow extends Application {
             }
         }
 
+
         updateRoomAfterUnlock(room);
+
+
     }
+
+
+
+
+
 
     // Separate method to update the room after unlocking
     private void updateRoomAfterUnlock(Room room) {
-        currentRoom = room;
-        backgroundView.setImage(new Image(room.getImagePath()));
-        descriptionArea.setText(room.getInitialDescription());
+        //Clear context menu during transition
+        contextMenu.getItems().clear();
 
-        exitsMenu.getItems().clear();
+        // Update room details after fade-out
+        FadeTransition fadeOut = new FadeTransition(Duration.seconds(1), backgroundView);
+        fadeOut.setFromValue(1.0);
+        fadeOut.setToValue(0.0);
+
+        fadeOut.setOnFinished(e -> {
+            currentRoom = room;
+            backgroundView.setImage(new Image(room.getImagePath()));
+            descriptionArea.setText(room.getInitialDescription());
+
+            exitsMenu.getItems().clear();
+            for (String exit : room.getExits()) {
+                MenuItem exitItem = new MenuItem(exit);
+                exitItem.setOnAction(ev -> updateRoom(exit));
+                exitsMenu.getItems().add(exitItem);
+            }
+
+            updateContextMenuExits(room);
+            // Create a fade-in transition
+            FadeTransition fadeIn = new FadeTransition(Duration.seconds(1), backgroundView);
+            fadeIn.setFromValue(0.0);
+            fadeIn.setToValue(1.0);
+            fadeIn.setOnFinished(ev -> {
+
+                MenuItem searchItem = new MenuItem("Search for Items");
+                searchItem.setOnAction(event -> handleSearchAction());
+
+                MenuItem lookItem = new MenuItem("Look Around");
+                lookItem.setOnAction(event -> handleLookAction());
+
+                contextMenu.getItems().add(searchItem);
+                contextMenu.getItems().add(lookItem);
+
+                //Ensure exits are properly restored to the context menu
+                updateContextMenuExits(room);
+            });
+            fadeIn.play();
+        });
+        fadeOut.play();
+    }
+
+    private void updateContextMenuExits(Room room) {
+        contextMenu.getItems().removeIf(item -> item.getText().startsWith("Go to ")); // Remove old exits
+
         for (String exit : room.getExits()) {
-            MenuItem exitItem = new MenuItem(exit);
+            MenuItem exitItem = new MenuItem("Go to " + exit);
             exitItem.setOnAction(e -> updateRoom(exit));
-            exitsMenu.getItems().add(exitItem);
+            contextMenu.getItems().add(exitItem);
         }
     }
+
 
     private void handleLookAction() {
         if (currentRoom != null) {
@@ -312,6 +393,28 @@ public class GameWindow extends Application {
             itemIcon.setFitWidth(32);
             itemIcon.setFitHeight(32);
             Tooltip.install(itemIcon, new Tooltip(item));
+            // Add left-click event handler to show item-specific descriptions
+            itemIcon.setOnMouseClicked(event -> {
+                if (event.getButton().name().equals("PRIMARY")) { // Left-click
+
+                    String description; // Variable to hold the description
+
+                    // Check which item was clicked and provide a unique description
+                    if (item.equals("Green Crystal")) {
+                        description = "The small green crystal glows faintly in your hand. It hums with a strange energy, as if reacting to your presence.";
+                    } else if (item.equals("Rusty Key")) {
+                        description = "A small, rusty key. It looks fragile, but it might still be useful for unlocking something.";
+                    } else if (item.equals("Mysterious Note")) {
+                        description = "A torn piece of paper covered in strange symbols. You can't make sense of it... yet.";
+                    } else {
+                        // Default fallback description if no specific one is provided
+                        description = "A mysterious item. You wonder what it could be used for.";
+                    }
+
+                    // Update the description area with the item-specific description
+                    descriptionArea.setText(description);
+                }
+            });
             inventoryPane.getChildren().add(itemIcon);
         }
     }
