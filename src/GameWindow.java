@@ -14,6 +14,7 @@ import javafx.util.Duration;
 import java.util.*;
 
 public class GameWindow extends Application {
+    //For simplicity in its uses in multiple areas this static variable is public
     public static Scene scene;
 
     private Map<String, Room> rooms;
@@ -99,7 +100,8 @@ public class GameWindow extends Application {
 
         scene = new Scene(root, 1320, 950, Color.DIMGRAY);
         scene.setOnContextMenuRequested(e -> {
-            contextMenu.show(scene.getWindow(), e.getScreenX(), e.getScreenY());});
+            contextMenu.show(scene.getWindow(), e.getScreenX(), e.getScreenY());
+        });
         primaryStage.setTitle("Haunted House Game");
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
@@ -119,15 +121,16 @@ public class GameWindow extends Application {
         rooms = new HashMap<>();
 
         //The front yard, the first area in the game
-        Room frontYard = new Room("Front Yard", "The last thing you remember is an intense pain to " +
-                "the back of your head, and after that, darkness for a time, where you were barely aware of yourself.   " +
-                "Beyond that, there are no memories, but echoes still dance in your mind, unable to be fully retrieved.    " +
-                "Now as your vision returns you find yourself standing in the yard of a very large foreboding house.   " +
-                "A very strange realization is forced on your mind, that this place *isn't real*...   and yet, you can feel " +
-                "the cold biting at your skin.  Looking at the home, it seems many lights are on, but no movement can " +
-                "be seen through any of them.   Whether or not this place is situated in reality, something tells you are " +
-                "trapped here by a real force, and the only way to wake from this dream is to enter the house. The way out " +
-                "of this realm is hidden inside, somewhere.  ",
+        Room frontYard = new Room("Front Yard",
+                "\tThe last thing you remember is an intense pain to " +
+                        "the back of your head, and after that, darkness for a time, where you were barely aware of yourself.   " +
+                        "Beyond that, there are no memories, but echoes still dance in your mind, unable to be fully retrieved.    " +
+                        "Now as your vision returns you find yourself standing in the yard of a very large foreboding house.   " +
+                        "A very strange realization is forced on your mind, that this place *isn't real*...   and yet, you can feel " +
+                        "the cold biting at your skin.  Looking at the home, it seems many lights are on, but no movement can " +
+                        "be seen through any of them.   Whether or not this place is situated in reality, something tells you are " +
+                        "trapped here by a real force, and the only way to wake from this dream is to enter the house. The way out " +
+                        "of this realm is hidden inside, somewhere.  ",
                 "\tThe path up to the house is well-trodden, and you see many footprints leading " +
                         "up to the porch and the front door.   Could it be that many a person has stood where you do now?   " +
                         "All of the footprints start around where you are standing, and there are " +
@@ -136,8 +139,9 @@ public class GameWindow extends Application {
                 "file:src/resources/image/FrontYard.png",
                 new String[]{"Front Hall"}, false, new String[]{"Rusty Key", "Green Crystal"}, new String[]{});
 
-        Room frontHall = new Room("Front Hall", "\tYou step into the grand front hall of the mansion. Dust swirls in the dim light..." +
-                "  something is very wrong here, but you can't quite tell what exactly.",
+        Room frontHall = new Room("Front Hall",
+                "\tYou step into the grand front hall of the mansion. Dust swirls in the dim light..." +
+                        "  something is very wrong here, but you can't quite tell what exactly.",
                 "\tYou stand in the Front Hall of the house.  Calling out does nothing and no human " +
                         "presence  arrives to the room. The door you entered this place with, has somehow locked " +
                         "itself, and no force you can muster can open it. Many lights are on but there is silence, " +
@@ -150,82 +154,97 @@ public class GameWindow extends Application {
                 "file:src/resources/image/FrontHall.png",
                 new String[]{"Dining Room", "Parlor", "Upstairs Loft"}, true, new String[]{}, new String[]{"Rusty Key"});
 
-        Room parlor = new Room("Parlor", "Placeholder",
+        Room parlor = new Room("Parlor",
+                "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/Parlor.png",
                 new String[]{"Front Hall", "Piano"}, false, new String[]{}, new String[]{});
 
-        Room diningRoom = new Room("Dining Room", "Placeholder",
+        Room diningRoom = new Room("Dining Room",
+                "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/DiningRoom.png",
                 new String[]{"Front Hall", "Kitchen"}, false, new String[]{}, new String[]{});
 
-        Room kitchen = new Room("Kitchen", "Placeholder",
+        Room kitchen = new Room("Kitchen",
+                "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/Kitchen.png",
                 new String[]{"Dining Room", "Basement"}, false, new String[]{}, new String[]{});
 
-        Room basement = new Room("Basement", "Placeholder",
+        Room basement = new Room("Basement",
+                "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/Basement.png",
                 new String[]{"Kitchen", "Wine Cellar"}, false, new String[]{}, new String[]{});
 
-        Room wineCellar = new Room("Wine Cellar", "Placeholder",
+        Room wineCellar = new Room("Wine Cellar",
+                "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/WineCellar.png",
                 new String[]{"Basement"}, false, new String[]{}, new String[]{});
 
-        Room upstairs = new Room("Upstairs Loft", "Placeholder",
+        Room upstairs = new Room("Upstairs Loft",
+                "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/Upstairs.png",
                 new String[]{"Front Hall", "Master Bedroom", "Guest Bedroom", "Servants Quarters"}, false, new String[]{}, new String[]{});
 
         //Blank room for following a pattern to add more rooms:
-        Room masterBedroom = new Room("Master Bedroom", "Placeholder",
+        Room masterBedroom = new Room("Master Bedroom",
+                "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/MasterBedroom.png",
                 new String[]{"Library", "Upstairs Loft", "Small Washroom"}, false, new String[]{}, new String[]{});
 
-        Room libraryRoom = new Room("Library", "Placeholder",
+        Room libraryRoom = new Room("Library",
+                "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/LibraryRoom.png",
                 new String[]{"Master Bedroom"}, false, new String[]{}, new String[]{});
 
-        Room washroom = new Room("Small Washroom", "Placeholder",
+        Room washroom = new Room("Small Washroom",
+                "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/Washroom.png",
                 new String[]{"Master Bedroom"}, false, new String[]{}, new String[]{});
 
-        Room guestBedroom = new Room("Guest Bedroom", "Placeholder",
+        Room guestBedroom = new Room("Guest Bedroom",
+                "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/GuestBedroom.png",
                 new String[]{"Closet Stairway", "Upstairs Loft"}, false, new String[]{}, new String[]{});
 
-        Room stairway = new Room("Closet Stairway", "Placeholder",
+        Room stairway = new Room("Closet Stairway",
+                "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/Stairway.png",
                 new String[]{"Attic", "Guest Bedroom"}, false, new String[]{}, new String[]{});
 
-        Room attic = new Room("Attic", "Placeholder",
+        Room attic = new Room("Attic",
+                "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/Attic.png",
                 new String[]{"Closet Stairway"}, false, new String[]{}, new String[]{});
 
-        Room servantRoom = new Room("Servants Quarters", "Placeholder",
+        Room servantRoom = new Room("Servants Quarters",
+                "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/ServantBedroom.png",
                 new String[]{"Upstairs Loft"}, false, new String[]{}, new String[]{});
 
 
         //This is the final area of the game, after the player has collected all the necessary items
-        Room piano = new Room("Piano", "Placeholder",
+        Room piano = new Room("Piano",
+                "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/Hallway.png",
                 new String[]{"Small Door"}, false, new String[]{}, new String[]{});
 
 
         //Blank room for following a pattern to add more rooms:
-        Room template = new Room("Placeholder", "Placeholder",
+        Room template = new Room("Placeholder",
+                "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/temp.png",
                 new String[]{}, false, new String[]{}, new String[]{});
@@ -293,10 +312,6 @@ public class GameWindow extends Application {
 
 
     }
-
-
-
-
 
 
     // Separate method to update the room after unlocking
