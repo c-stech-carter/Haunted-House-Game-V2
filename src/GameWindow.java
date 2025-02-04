@@ -194,8 +194,8 @@ public class GameWindow extends Application {
                 "\tYou stand in the Front Hall of the house.  Calling out does nothing and no human " +
                         "presence  arrives to the room. The door you entered this place with, has somehow locked " +
                         "itself, and no force you can muster can open it. Many lights are on but there is silence, " +
-                        "a suffocating silence that you can almost feel in your throat.  The room itself is " +
-                        "quite beautiful,  a grand staircase goes to the upper floor, a chandelier hangs from " +
+                        "a suffocating silence that you can almost feel in your throat.  " +
+                        "\n\tThe room itself is quite beautiful,  a grand staircase goes to the upper floor, a chandelier hangs from " +
                         "the ceiling.  A door on the left goes to a parlor, and a door behind you goes to what " +
                         "seems to be a dining room.   Two paintings hang here on the walls, one of a sad looking " +
                         "young woman, and the other of a woman who seems to be in severe distress.  " +
@@ -205,50 +205,101 @@ public class GameWindow extends Application {
                 new String[]{}, new String[]{"Rusty Key"});
 
         Room parlor = new Room("Parlor",
-                "Placeholder",
-                "Placeholder",
+                "You enter the parlor, this room feels strangely calm, as if whatever evil presence " +
+                        "in this house has less of an influence here.",
+                "\tThe piano in this room draws all your focus as you look around this room.  A candle " +
+                        "eerily burns on top of it, and from the light of the candle you can see some small pedestals " +
+                        "that look as if they are to hold something.   On each base a small engraving depicts what should " +
+                        "rest on them: the first, an eye, two others depict crystals, and the final shows a rectangular piece of metal. " +
+                        "To the side of the piano a chair rests, and you have the distinct impression that something unseen " +
+                        "is sitting in it." +
+                        "\n\tBehind you a door leads back to the front hall, but part of you doesn't wish to leave this room " +
+                        "again.",
                 "file:src/resources/image/Parlor.png",
                 new String[]{"Front Hall", "Piano"}, true,
                 new String[]{}, new String[]{"Gold Key"});
 
         Room diningRoom = new Room("Dining Room",
-                "Placeholder",
-                "Placeholder",
+                "You enter the dining room.  There is a faint odor in this room that makes you slightly sick to " +
+                        "your stomach.",
+                "\tYou stand in a dining room, where it seems the spiders have created a tapestry of " +
+                        "cobwebs.  Curiously, although the webs are plentiful, none of them seem to have any living " +
+                        "residents, although there are plenty of dead ones.  Eerily, like all rooms in this place, " +
+                        "the lights are on, and dinnerware is still present on the table, as if whomever last dined " +
+                        "here had to leave in a hurry.   Some plates even have desiccated pieces of food on them.   " +
+                        "Two clocks tick on the walls, displaying times that don't match, and both seem to be stuck, " +
+                        "despite their sound.  One clock is set in a gold picture frame, the other in an ornate wooden housing.   " +
+                        "The dining chairs have all been pushed back, away from the table.   " +
+                        "\n\tBehind you a doorway leads back to the front hall, and another in the corner leads to a kitchen.  " +
+                        "Strangely your own name comes to your mind, very distinctly, as if someone had spoken it in your ear, " +
+                        "but without sound.",
                 "file:src/resources/image/DiningRoom.png",
                 new String[]{"Front Hall", "Kitchen"}, false,
                 new String[]{}, new String[]{});
 
         Room kitchen = new Room("Kitchen",
-                "Placeholder",
-                "Placeholder",
+                "As you enter the kitchen a bright flash of light envelops the room, through the windows," +
+                        "where out of the corner of your eye you catch a glimpse of a ray of lightning strike not " +
+                        "very far from the house.   Strangely, no sound or familiar thunderclap accompanies it.  ",
+                "\tThis room seems to be a little more modern than other parts of the house, with newer-looking " +
+                        "appliances, albeit in very poor condition.   The refrigerator in particular, on closer " +
+                        "inspection, has strange markings on it, that almost cause pain to look at.   A gaping hole" +
+                        "has been punctured into its door.   " +
+                        "\n\tBehind you, a doorway goes back to the Dining Room, " +
+                        "and you notice a narrow door in the other corner of the room, with some tight stairs " +
+                        "leading down into a basement",
                 "file:src/resources/image/Kitchen.png",
                 new String[]{"Dining Room", "Basement"}, false,
                 new String[]{"Red Crystal"}, new String[]{});
 
         Room basement = new Room("Basement",
-                "Placeholder",
-                "Placeholder",
+                "You enter the small basement room.  It doesn't feel so dreary in here.",
+                "\tThis room seems more cheerful than others, with colorful drawings pasted on the walls, " +
+                        "and craft materials stored in various containers.   A small furnace with a low flame is burning. " +
+                        "\n\tTaking a closer look at the drawings reveals the work of a child, and they are quite charming, " +
+                        "except one on the right wall that reminds you of a skull or some grim ghostly face.  " +
+                        "At the back of the room behind some shelves, you notice a very old looking door, " +
+                        "which you think goes to a wine cellar.   In that dark part of the room it seems some effort was " +
+                        "made to keep this particular door from easy view.",
                 "file:src/resources/image/Basement.png",
                 new String[]{"Kitchen", "Wine Cellar"}, false,
                 new String[]{}, new String[]{});
 
         Room wineCellar = new Room("Wine Cellar",
-                "Placeholder",
-                "Placeholder",
+                "You enter the wine cellar.  Dust and cobwebs are everywhere and dirty your clothes " +
+                        "no matter how hard you try to avoid it.",
+                "\tLooking around the wine cellar, the first thing you notice is how much dust there is, " +
+                        "more so than other areas of the house.   It feels as if you are the first to enter this room " +
+                        "in a very, very long time.  As you look around you notice the casks, and many full bottles of " +
+                        "wine, some of which seem from very old years.  The room itself seems frightening, dark shadows " +
+                        "play in the light and give you a sense that something could strike out at you at any moment.",
                 "file:src/resources/image/WineCellar.png",
                 new String[]{"Basement"}, true,
                 new String[]{"Infernal Metal"}, new String[]{"Silver Key"});
 
         Room upstairs = new Room("Upstairs Loft",
-                "Placeholder",
-                "Placeholder",
+                "You enter an upstairs loft.  The room is dark and poorly lit.",
+                "\tYou survey the room, which features most noticeably, several paintings that seem to glare " +
+                        "at you with empty eyes.  Two burning candles sit side-by-side on a table, and cobwebs and dust " +
+                        "seem to cover almost every surface in the room.   Looking to the back of the room you see two " +
+                        "hallways, one leads to a master bedroom, and the other leads to two other rooms, " +
+                        "which look to be a guest bedroom and some servant's quarters.  Behind you stair lead back to " +
+                        "the front hall.",
                 "file:src/resources/image/Upstairs.png",
                 new String[]{"Front Hall", "Master Bedroom", "Guest Bedroom", "Servants Quarters"}, false,
                 new String[]{}, new String[]{});
 
         Room masterBedroom = new Room("Master Bedroom",
-                "Placeholder",
-                "Placeholder",
+                "You enter the master bedroom, moonlight shines through an open window. ",
+                "\tYou look around the master bedroom and are surprised at its poor condition, even " +
+                        "after seeing other areas of this house.  The bedsheets of the large bed are tattered and " +
+                        "torn, and in the corner the fabric of a draped area looks to be torn to shreds.  " +
+                        "The walls have great patches of decay all over them, and torn pieces of wallpaper hang " +
+                        "from the ceiling.  \n\tWalking in the room is treacherous due to missing floorboards.  " +
+                        "Disturbingly, two skulls casually rest on twin dressers with mirrors.   They look real, and " +
+                        "placed with intent.   You have no desire to look closer to see if they are actually authentic.   " +
+                        "Behind you a door leads back to the upstairs loft, and to your right a doorway goes through " +
+                        "to a den or study area.",
                 "file:src/resources/image/MasterBedroom.png",
                 new String[]{"Library", "Upstairs Loft", "Small Washroom"}, true,
                 new String[]{}, new String[]{"Gold Coin"});
