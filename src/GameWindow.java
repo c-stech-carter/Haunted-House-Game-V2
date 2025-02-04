@@ -111,14 +111,61 @@ public class GameWindow extends Application {
 
     //When inventory items are found, the description for their discovery is defined here
     private void initializeItemDiscoveryDescriptions() {
-        itemDiscoveryDescriptions.put("Rusty Key", "You search the area and notice a small key under the rug, you pick it up.");
-        itemDiscoveryDescriptions.put("Green Crystal", "\nYou also notice a small green crystal.  It looks important so you take it with you.");
-        itemDiscoveryDescriptions.put("Mysterious Note", "As you rummage through the papers on the table, you find a torn piece of paper with strange symbols.");
+        itemDiscoveryDescriptions.put("Rusty Key",
+                "You search the area and notice a small key under the rug, you pick it up.");
+        itemDiscoveryDescriptions.put("Green Crystal",
+                "\nYou also notice a small green crystal.  It looks important so you take it with you. As " +
+                        "you touch it distant memories of happiness touch your mind, but then are eclipsed " +
+                        "by a sense of dread.");
+        itemDiscoveryDescriptions.put("Red Crystal",
+                "\tAs you search the kitchen, you are suddenly drawn to the sink.   A red glow can be " +
+                        "seen beneath its murky and foul water.  You apprehensively submerse your hand into the " +
+                        "ooze which burns your skin slightly.   You grasp the source of the glow and pull it out; a " +
+                        "dark red crystal.");
+        itemDiscoveryDescriptions.put("Infernal Metal",
+                "\tAs you search around the wine cellar, you notice a warmth coming from one of the racks, along " +
+                        "with an acrid sulphurous smell.  An ingot of dark metal with smoldering veins of embers " +
+                        "has been hidden behind a bottle.   As you grab it your surroundings become blurred " +
+                        "and your vision darkens.  Within moments an almost audible scream fills your mind, " +
+                        "although it doesn't seem human.  And before you can panic, your mind fixates unwillingly " +
+                        "on a space of the floor, as if it whatever invisible presence here wants you to see " +
+                        "what had happened there.  The moment then subsides, and you place the cursed ingot " +
+                        "into your inventory.");
+        itemDiscoveryDescriptions.put("Glass Eye",
+                "\tYou search diligently in the small bathroom, looking in the medicine cabinet and corners of the " +
+                        "room for something the feels like it could be important.   All this time you avoid the bath tub " +
+                        "full of black liquid, but a part of you knows that in its depths is what you are looking for.  " +
+                        "Finally after some mental preparation you dip your hand into the tub.  The liquid is " +
+                        "frightfully cold and you soon feel numb.   Just when you think you can't endure any more " +
+                        "of the freezing temperature your hand grasps a small sphere.   You quickly pull it out to " +
+                        "see a small glass eye with a green iris, which you place with the things your carrying.");
+        itemDiscoveryDescriptions.put("Silver Key",
+                "\tAs you search the room you hear a faint knocking coming from the inside of a large armoire " +
+                        "in the corner of the room.   Reluctantly you open it, finding it empty besides some dusty, " +
+                        "poorly-folded bedlinens, and the knocking stops.  Suddenly, behind you, a loud sound " +
+                        "startles you and when you look for the source of the noise you see a small silver key " +
+                        "in the middle of the room.   It trembles slightly as if it just been dropped to the floor.");
+        itemDiscoveryDescriptions.put("Gold Coin",
+                "\tWhen you search this room you are immediately drawn to the ornate-looking closed chest resting " +
+                        "in the middle of the floor.   It opens easily enough and you see an single gold coin inside " +
+                        "it.   When you grab the coin it feels as if it weighs sixty pounds and you struggle to lift " +
+                        "it, and then suddenly the heaviness is gone and you fall backward.  The coin seems as light " +
+                        "as any normal coin now, and you put it with your things.");
+        itemDiscoveryDescriptions.put("Gold Key",
+                "\tYou carefully search the library looking for something that could be important.   You notice a book " +
+                        "on one of the shelves that seems ancient.   When you take a closer look, the book has no title " +
+                        "but simply a human skull embossed into the leather.   You notice a red ribbon which seems to " +
+                        "to be a bookmark, but when you turn to its page you notice it is attached to a flat gold key.  " +
+                        "Only then do you notice in the book the diagrams of some barbaric ritual written in language you can't " +
+                        "understand.   The words seem to scream at you and you quickly shut the book.   You then place " +
+                        "the key with the items you are carrying.");
     }
 
     //The rooms of the mansion are defined in this method
     private void initializeRooms() {
         rooms = new HashMap<>();
+
+        //A template room can be seen at the bottom of this list for reference
 
         //The front yard, the first area in the game
         Room frontYard = new Room("Front Yard",
@@ -137,11 +184,13 @@ public class GameWindow extends Application {
                         "none leading away from the house.   Something tells you much worse things " +
                         "could be waiting if you were to walk into the woods.",
                 "file:src/resources/image/FrontYard.png",
-                new String[]{"Front Hall"}, false, new String[]{"Rusty Key", "Green Crystal"}, new String[]{});
+                new String[]{"Front Hall"}, false,
+                new String[]{"Rusty Key", "Green Crystal"}, new String[]{});
 
         Room frontHall = new Room("Front Hall",
-                "\tYou step into the grand front hall of the mansion. Dust swirls in the dim light..." +
-                        "  something is very wrong here, but you can't quite tell what exactly.",
+                "\tYou step into the grand front hall of the mansion. Dust swirls in the dim light...  " +
+                        "something is very wrong here, but you can't quite tell what exactly.  The room is vacant, " +
+                        "but it feels like you're being watched.",
                 "\tYou stand in the Front Hall of the house.  Calling out does nothing and no human " +
                         "presence  arrives to the room. The door you entered this place with, has somehow locked " +
                         "itself, and no force you can muster can open it. Many lights are on but there is silence, " +
@@ -152,86 +201,99 @@ public class GameWindow extends Application {
                         "young woman, and the other of a woman who seems to be in severe distress.  " +
                         "Her hair is shorn, and her clothing is gray.",
                 "file:src/resources/image/FrontHall.png",
-                new String[]{"Dining Room", "Parlor", "Upstairs Loft"}, true, new String[]{}, new String[]{"Rusty Key"});
+                new String[]{"Dining Room", "Parlor", "Upstairs Loft"}, true,
+                new String[]{}, new String[]{"Rusty Key"});
 
         Room parlor = new Room("Parlor",
                 "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/Parlor.png",
-                new String[]{"Front Hall", "Piano"}, false, new String[]{}, new String[]{});
+                new String[]{"Front Hall", "Piano"}, true,
+                new String[]{}, new String[]{"Gold Key"});
 
         Room diningRoom = new Room("Dining Room",
                 "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/DiningRoom.png",
-                new String[]{"Front Hall", "Kitchen"}, false, new String[]{}, new String[]{});
+                new String[]{"Front Hall", "Kitchen"}, false,
+                new String[]{}, new String[]{});
 
         Room kitchen = new Room("Kitchen",
                 "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/Kitchen.png",
-                new String[]{"Dining Room", "Basement"}, false, new String[]{}, new String[]{});
+                new String[]{"Dining Room", "Basement"}, false,
+                new String[]{"Red Crystal"}, new String[]{});
 
         Room basement = new Room("Basement",
                 "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/Basement.png",
-                new String[]{"Kitchen", "Wine Cellar"}, false, new String[]{}, new String[]{});
+                new String[]{"Kitchen", "Wine Cellar"}, false,
+                new String[]{}, new String[]{});
 
         Room wineCellar = new Room("Wine Cellar",
                 "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/WineCellar.png",
-                new String[]{"Basement"}, false, new String[]{}, new String[]{});
+                new String[]{"Basement"}, true,
+                new String[]{"Infernal Metal"}, new String[]{"Silver Key"});
 
         Room upstairs = new Room("Upstairs Loft",
                 "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/Upstairs.png",
-                new String[]{"Front Hall", "Master Bedroom", "Guest Bedroom", "Servants Quarters"}, false, new String[]{}, new String[]{});
+                new String[]{"Front Hall", "Master Bedroom", "Guest Bedroom", "Servants Quarters"}, false,
+                new String[]{}, new String[]{});
 
-        //Blank room for following a pattern to add more rooms:
         Room masterBedroom = new Room("Master Bedroom",
                 "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/MasterBedroom.png",
-                new String[]{"Library", "Upstairs Loft", "Small Washroom"}, false, new String[]{}, new String[]{});
+                new String[]{"Library", "Upstairs Loft", "Small Washroom"}, true,
+                new String[]{}, new String[]{"Gold Coin"});
 
         Room libraryRoom = new Room("Library",
                 "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/LibraryRoom.png",
-                new String[]{"Master Bedroom"}, false, new String[]{}, new String[]{});
+                new String[]{"Master Bedroom"}, false,
+                new String[]{"Gold Key"}, new String[]{});
 
         Room washroom = new Room("Small Washroom",
                 "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/Washroom.png",
-                new String[]{"Master Bedroom"}, false, new String[]{}, new String[]{});
+                new String[]{"Master Bedroom"}, false,
+                new String[]{"Glass Eye"}, new String[]{});
 
         Room guestBedroom = new Room("Guest Bedroom",
                 "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/GuestBedroom.png",
-                new String[]{"Closet Stairway", "Upstairs Loft"}, false, new String[]{}, new String[]{});
+                new String[]{"Closet Stairway", "Upstairs Loft"}, false,
+                new String[]{}, new String[]{});
 
         Room stairway = new Room("Closet Stairway",
                 "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/Stairway.png",
-                new String[]{"Attic", "Guest Bedroom"}, false, new String[]{}, new String[]{});
+                new String[]{"Attic", "Guest Bedroom"}, false,
+                new String[]{}, new String[]{});
 
         Room attic = new Room("Attic",
                 "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/Attic.png",
-                new String[]{"Closet Stairway"}, false, new String[]{}, new String[]{});
+                new String[]{"Closet Stairway"}, false,
+                new String[]{"Gold Coin"}, new String[]{});
 
         Room servantRoom = new Room("Servants Quarters",
                 "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/ServantBedroom.png",
-                new String[]{"Upstairs Loft"}, false, new String[]{}, new String[]{});
+                new String[]{"Upstairs Loft"}, false,
+                new String[]{"Silver Key"}, new String[]{});
 
 
         //This is the final area of the game, after the player has collected all the necessary items
@@ -239,7 +301,8 @@ public class GameWindow extends Application {
                 "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/Hallway.png",
-                new String[]{"Small Door"}, false, new String[]{}, new String[]{});
+                new String[]{"Small Door"}, true,
+                new String[]{}, new String[]{"Red Crystal", "Green Crystal", "Infernal Metal", "Glass Eye"});
 
 
         //Blank room for following a pattern to add more rooms:
@@ -247,7 +310,10 @@ public class GameWindow extends Application {
                 "Placeholder",
                 "Placeholder",
                 "file:src/resources/image/temp.png",
-                new String[]{}, false, new String[]{}, new String[]{});
+                //String Array for Exits, boolean for toggling a room as locked
+                new String[]{}, false,
+                //String Array for discoverable items, and String Array for items required to open the room, if locked
+                new String[]{}, new String[]{});
 
 
         //Add defined rooms to HashMap rooms
@@ -285,12 +351,28 @@ public class GameWindow extends Application {
 
                 contextMenu.getItems().clear();
 
+                //Custom unlock messages are here
                 if (roomName.equalsIgnoreCase("Front Hall")) {
-                    descriptionArea.setText("\tThe rusty key you found under the mat fits into the keyhole" +
-                            " of the foreboding front door of the house. The door unlocks and you step inside. " +
+                    descriptionArea.setText("\tThe rusty key you found under the mat fits into the keyhole " +
+                            "of the foreboding front door of the house. The door unlocks and you step inside. " +
                             "To your astonishment, the key disintegrates, as if made from ash, and " +
-                            "completely disappears. \n\n(Click to continue...)");
-                } else {
+                            "completely disappears. " +
+                            "\n\n(Click to continue...)");
+                } else if (roomName.equalsIgnoreCase("Master Bedroom")) {
+                    descriptionArea.setText("You drop the key into the strange locking mechanism of the master " +
+                            "bedroom door.   You hear a click and the door is now open.   There seems to be no " +
+                            "way to get the coin back." +
+                            "\n\n(Click to continue...)");
+                } else if (roomName.equalsIgnoreCase("Wine Cellar")) {
+                    descriptionArea.setText("You unlock the door to the wine cellar with the silver key.  As " +
+                            "soon as the door is open the key shatters, nearly injuring you.   The pieces scatter " +
+                            "as if there were a great wind blowing them away." +
+                            "\n\n(Click to continue...)");
+                } else if (roomName.equalsIgnoreCase("Parlor")) {
+                    descriptionArea.setText("You unlock the door to the parlor with the gold key. " +
+                            "A bright flash blinds you for a moment and the beautiful key is gone in an instant." +
+                            "\n\n(Click to continue...)");
+                } else {  //Generic unlock message
                     descriptionArea.setText("\nYou used " + String.join(", ", requiredItems) + " to unlock the " + roomName + "!" +
                             "(\nClick to continue..)");
                 }
@@ -303,8 +385,29 @@ public class GameWindow extends Application {
 
                 return;
             } else {
-                descriptionArea.setText("The door to " + roomName + " is locked. You need: " + requiredItems);
-                return;
+                //Locked rooms have custom lock descriptions here:
+                if (roomName.equalsIgnoreCase("Front Hall")) {
+                    descriptionArea.setText("To your frustration, the front door of the mansion is locked, perhaps " +
+                            "the key could be close-by?");
+                    return;
+                } else if (roomName.equalsIgnoreCase("Master Bedroom")) {
+                    descriptionArea.setText("A strange lock keeps you from entering the master bedroom, it looks like " +
+                            "a mechanism that is meant receive a coin, as if one had to pay to unlock the door.");
+                    return;
+                } else if (roomName.equalsIgnoreCase("Wine Cellar")) {
+                    descriptionArea.setText("The door to the wine cellar is locked.   The door has scratches on it, as " +
+                            "if someone had tried to claw their way in.   Perhaps the key is elsewhere in the house.");
+                    return;
+                } else if (roomName.equalsIgnoreCase("Parlor")) {
+                    descriptionArea.setText("The door to the parlor is locked.   As you approach the door you can " +
+                            "almost hear music playing.   Something draws you to this room, something important is behind " +
+                            "this door.");
+                    return;
+                } else {
+                    //Generic locked message
+                    descriptionArea.setText("The door to " + roomName + " is locked. You need: " + requiredItems);
+                    return;
+                }
             }
         }
 
@@ -417,11 +520,34 @@ public class GameWindow extends Application {
 
                     // Check which item was clicked and provide a unique description
                     if (item.equals("Green Crystal")) {
-                        description = "The small green crystal glows faintly in your hand. It hums with a strange energy, as if reacting to your presence.";
+                        description = "The small green crystal glows faintly in your hand. It hums with a strange energy, " +
+                                "as if reacting to your presence.  Touching it brings feelings of happiness mixed " +
+                                "with despair.  It has been cut quite distinctly and almost looks like it would be " +
+                                "very valuable in some other place besides this nightmare.";
                     } else if (item.equals("Rusty Key")) {
                         description = "A small, rusty key. It looks fragile. It must be for the front door.";
-                    } else if (item.equals("Mysterious Note")) {
-                        description = "A torn piece of paper covered in strange symbols. You can't make sense of it... yet.";
+                    } else if (item.equals("Red Crystal")) {
+                        description = "The red crystal causes feelings of anger when you touch it.   As if you'd been " +
+                                "dealt a great injustice.   It is smooth and beautiful, however, and its color reminds " +
+                                "you of blood.";
+                    } else if (item.equals("Infernal Metal")) {
+                        description = "The infernal metal ingot is cold to the touch on the black parts of the metal, and " +
+                                "is piping hot on the veins that glow like embers.   Screams seem to fill your mind when " +
+                                "you grasp it, like the wailing of the damned.";
+                    } else if (item.equals("Glass Eye")) {
+                        description = "The glass eye gives you a sense of unease when you inspect it.  When meeting its " +
+                                "gaze it distinctly feels as if something is looking back at you, as if it were a real " +
+                                "eye.  Its green iris seems sickly and diseased.";
+                    } else if (item.equals("Gold Coin")) {
+                        description = "The gold coin shines as if it were new.  A kingly face is on one side, and a small " +
+                                "inscription on the other reads:  'Pay your respects to the master of the house.'";
+                    } else if (item.equals("Silver Key")) {
+                        description = "The silver key is tarnished but still looks valuable.  It has a bunch " +
+                                "of grapes finely engraved into its handle.";
+                    } else if (item.equals("Gold Key")) {
+                        description = "The gold key is flat and brilliantly reflective, it looks like it could bring " +
+                                "quite a sum of money were it to be sold.  One one side of its handle you see a musical note " +
+                                "and a label that reads 'Parlor.'   On the other side it reads: 'Escape.'";
                     } else {
                         // Default fallback description if no specific one is provided
                         description = "A mysterious item. You wonder what it could be used for.";
