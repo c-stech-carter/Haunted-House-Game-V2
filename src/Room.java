@@ -1,3 +1,10 @@
+/*
+Author: Charles Carter
+Date: 2/4/2025
+
+Description:  This is the room class which provides Room objects for use in the game.
+ */
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
