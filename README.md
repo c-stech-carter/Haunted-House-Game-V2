@@ -2,7 +2,7 @@
 
 A **text-based adventure game** where players explore a haunted mansion, uncover secrets, and try to escape. Built using **JavaFX**.
 The graphics utilized for the rooms are pixel art generated with A.I. using DallE-3 and Flux1Dev, and some free icons were used which were obtained from itch.io.
-The game was desinged as an assignment for Soutwest Tech to demonstrate what I've learned while studying Java.
+The game was designed as an assignment for Soutwest Tech to demonstrate what I've learned while studying Java.
 
 ## 📜 Description
 The setting is a nightmare that the player finds themselves trapped in.   The only way to make it out is to fully explore the mansion, and find each item necessary to break free.  The controls can be used either by
