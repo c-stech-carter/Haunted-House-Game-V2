@@ -4,7 +4,8 @@ A **text-based adventure game** where players explore a haunted house, uncover s
 The graphics utilized for the rooms are pixel art generated with A.I. using DallE-3 and Flux1Dev, and some free icons were used which were obtained from itch.io.
 
 ## 📜 Description
-This game places the player in a mysterious haunted house where they must explore various rooms, search for items, and solve puzzles to find a way out.
+The game places the player in a nightmare where they are trapped in a Haunted House and must find the way to escape.   The controls can be used either by
+menu buttons at the top of the window, or right-clicking and using the context menu.
 
 ### 🎮 Features
 - **Interactive exploration** of different rooms 🏠
@@ -25,6 +26,9 @@ This game places the player in a mysterious haunted house where they must explor
 ## 🛠️ Built With
 - **Java 11+**
 - **JavaFX**
+
+## Future Features
+If I have time to revisit this project I'll add more animations and custom messages to enhance the exploration.
 
 
 ### 👻 Have fun exploring the haunted house! 👀
