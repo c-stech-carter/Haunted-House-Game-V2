@@ -13,10 +13,17 @@ import javafx.util.Duration;
 
 import java.util.*;
 
+
+/**
+ * The {@code GameWindow} class represents the main game window and entry point for the Haunted House game.
+ * It initializes the game UI, manages rooms, handles user interactions, and updates the game state.
+ * This class extends {@link Application} to create a JavaFX-based user interface.
+ */
 public class GameWindow extends Application {
     //For simplicity in its uses in multiple areas this static variable is public
     public static Scene scene;
 
+    //Data Fields used in the program
     private Map<String, Room> rooms;
     private Room currentRoom;
     private ImageView backgroundView;
@@ -29,7 +36,12 @@ public class GameWindow extends Application {
     private MenuBar menuBar;
     private ContextMenu contextMenu;
 
-
+    /**
+     * Initializes and starts the JavaFX application.
+     * Sets up the UI elements, event handlers, and game logic.
+     *
+     * @param primaryStage The primary stage for this JavaFX application.
+     */
     @Override
     public void start(Stage primaryStage) {
         BorderPane root = new BorderPane();
@@ -109,7 +121,10 @@ public class GameWindow extends Application {
     }
 
 
-    //When inventory items are found, the description for their discovery is defined here
+    /**
+     * Initializes the descriptions of items when they are discovered by the player.
+     * These descriptions are displayed when the player finds specific items in the game.
+     */
     private void initializeItemDiscoveryDescriptions() {
         itemDiscoveryDescriptions.put("Rusty Key",
                 "You search the area and notice a small key under the rug, you pick it up.");
@@ -161,7 +176,11 @@ public class GameWindow extends Application {
                         "the key with the items you are carrying.");
     }
 
-    //The rooms of the mansion are defined in this method
+    /**
+     * Initializes and sets up the rooms in the game.
+     * Each room is defined with its name, description, image path, available exits,
+     * and items that can be discovered or required to unlock access.
+     */
     private void initializeRooms() {
         rooms = new HashMap<>();
 
@@ -440,6 +459,12 @@ public class GameWindow extends Application {
         rooms.put("Small Door", smallDoor);
     }
 
+    /**
+     * Updates the game state when the player moves to a new room.
+     * Handles room locking logic, room descriptions, and UI updates.
+     *
+     * @param roomName The name of the room to update to.
+     */
     private void updateRoom(String roomName) {
         Room room = rooms.get(roomName);
         if (room == null) return;
@@ -529,14 +554,15 @@ public class GameWindow extends Application {
             }
         }
 
-
         updateRoomAfterUnlock(room);
-
-
     }
 
 
-    // Separate method to update the room after unlocking
+    /**
+     * Handles the transition of unlocking a locked room and updating the game state accordingly.
+     *
+     * @param room The {@link Room} that has been unlocked.
+     */
     private void updateRoomAfterUnlock(Room room) {
         //Clear context menu during transition
         contextMenu.getItems().clear();
@@ -581,7 +607,11 @@ public class GameWindow extends Application {
         });
         fadeOut.play();
     }
-
+    /**
+     * Updates the context menu with the available exits from the current room.
+     *
+     * @param room The current {@link Room} whose exits should be displayed in the context menu.
+     */
     private void updateContextMenuExits(Room room) {
         contextMenu.getItems().removeIf(item -> item.getText().startsWith("Go to ")); // Remove old exits
 
@@ -592,13 +622,19 @@ public class GameWindow extends Application {
         }
     }
 
-
+    /**
+     * Displays the description of the current room when the player chooses to "Look Around".
+     */
     private void handleLookAction() {
         if (currentRoom != null) {
             descriptionArea.setText(currentRoom.getLookDescription());
         }
     }
 
+    /**
+     * Handles the player's action of searching a room for items.
+     * If items are found, they are added to the player's inventory.
+     */
     private void handleSearchAction() {
         if (currentRoom == null) return;
 
@@ -627,6 +663,10 @@ public class GameWindow extends Application {
         updateInventoryUI();
     }
 
+    /**
+     * Updates the inventory UI to reflect the items the player has collected.
+     * Displays item icons and allows players to inspect them.
+     */
     private void updateInventoryUI() {
         inventoryPane.getChildren().clear();
         for (String item : inventory) {
@@ -683,6 +723,11 @@ public class GameWindow extends Application {
         }
     }
 
+    /**
+     * The main method to launch the JavaFX application.
+     *
+     * @param args Command-line arguments.
+     */
     public static void main(String[] args) {
         launch(args);
     }
