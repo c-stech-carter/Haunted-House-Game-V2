@@ -1,3 +1,11 @@
+/*
+Author: Charles Carter
+Date: 2/4/2025
+
+Description:  This is the main program for an exploration video game.   The player explores
+a haunted house trying to find an escape.
+ */
+
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
