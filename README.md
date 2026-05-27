@@ -1,4 +1,4 @@
-# Haunted House Game 
+# Haunted House Game (2.0 Version, no standalone)
 
 A **text-based adventure game** where players explore a haunted mansion, uncover secrets, and try to escape. Built using **JavaFX**.
 The graphics utilized for the rooms are pixel art generated with A.I. using DallE-3 and Flux1Dev, and some free icons were used which were obtained from itch.io.
