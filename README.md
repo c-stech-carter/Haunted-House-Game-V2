@@ -5,7 +5,7 @@ Welcome to the historical v2.0.0 release of the Haunted House Project. This repo
 A **gothic-industrial text adventure game** built using **JavaFX**, where players navigate a surreal nightmare realm, solve environmental lock puzzles, and manage an item inventory to secure an escape.
 
 ## 📸 Screenshots
-| Exploration & Interface | Inventory & Item Details |
+| First 'Room' of the Game | Room Graphic Example 2 |
 | :---: | :---: |
 | ![First 'Room' of the Game](src/resources/image/FrontYard.png) | ![Room Graphic Example 2](src/resources/image/Parlor.png) |
 *Note: Replace the image paths above with your actual screenshot URLs if you upload them to your repository.*
