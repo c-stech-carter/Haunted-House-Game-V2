@@ -4,6 +4,12 @@ Welcome to the historical v2.0.0 release of the Haunted House Project. This repo
 
 A **gothic-industrial text adventure game** built using **JavaFX**, where players navigate a surreal nightmare realm, solve environmental lock puzzles, and manage an item inventory to secure an escape.
 
+## 📸 Screenshots
+| Exploration & Interface | Inventory & Item Details |
+| :---: | :---: |
+| ![Exploration Gameplay](src/resources/image/FrontYard.png) | ![Inventory Mechanics](src/resources/image/Parlor.png) |
+*Note: Replace the image paths above with your actual screenshot URLs if you upload them to your repository.*
+
 ## 🏛️ Project Purpose & Context
 This game was originally designed as a comprehensive practical project for **Southwest Tech** to synthesize and demonstrate core Java programming paradigms, object-oriented design, dynamic event handling, and desktop GUI construction. 
 
@@ -26,9 +32,9 @@ The visual narrative relies heavily on a grim, atmospheric aesthetic:
 ## 🛠️ Archival Installation & Execution Notes
 
 > [!IMPORTANT]
-> **Pathing Constraint Note:** This historical version utilizes direct relative file paths (`file:src/resources/...`) optimized for desktop IDE runtime environments. It is not configured as a standalone JAR.
+> **Pathing Constraint Note:** This historical version utilizes direct relative file paths (`file:src/resources/...`) optimized for desktop IDE runtime environments. It is not configured as a standalone JAR[cite: 1].
 
 To run this specific build without asset breaking:
 1. **Clone the historical branch:**
-   ```sh
+```sh
    git clone [https://github.com/your-username/haunted-house-game.git](https://github.com/your-username/haunted-house-game.git)
