@@ -7,7 +7,7 @@ A **gothic-industrial text adventure game** built using **JavaFX**, where player
 ## 📸 Screenshots
 | Exploration & Interface | Inventory & Item Details |
 | :---: | :---: |
-| ![Exploration Gameplay](src/resources/image/FrontYard.png) | ![Inventory Mechanics](src/resources/image/Parlor.png) |
+| ![First 'Room' of the Game](src/resources/image/FrontYard.png) | ![Room Graphic Example 2](src/resources/image/Parlor.png) |
 *Note: Replace the image paths above with your actual screenshot URLs if you upload them to your repository.*
 
 ## 🏛️ Project Purpose & Context
