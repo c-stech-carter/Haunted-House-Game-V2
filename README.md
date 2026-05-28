@@ -1,6 +1,6 @@
-# Haunted House Project — Version 2.0.0 (Archival Branch)
+# Haunted House Project — Version 2.0.0 (Archival Repository)
 
-Welcome to the historical v2.0.0 release of the Haunted House Project. This repository branch is preserved in its original state to showcase the evolutionary development, structural milestones, and logic design of the engine prior to the standalone optimizations introduced in later major versions.
+Welcome to the historical v2.0.0 repository of the Haunted House Project. This standalone repository is preserved in its original state to showcase the evolutionary development, structural milestones, and logic design of the engine prior to the standalone optimizations introduced in later major versions.
 
 A **gothic-industrial text adventure game** built using **JavaFX**, where players navigate a surreal nightmare realm, solve environmental lock puzzles, and manage an item inventory to secure an escape.
 
@@ -8,6 +8,7 @@ A **gothic-industrial text adventure game** built using **JavaFX**, where player
 | First 'Room' of the Game | Room Example 2 |
 | :---: | :---: |
 | ![First Room](src/resources/image/FrontYard.png) | ![Room Example](src/resources/image/Parlor.png) |
+*Note: Replace the image paths above with your actual screenshot URLs if you upload them to your repository layout.*
 
 ## 🏛️ Project Purpose & Context
 This game was developed as one of my final projects for my **STECH** class to synthesize and demonstrate core Java programming paradigms, object-oriented design, dynamic event handling, and desktop GUI construction. 
@@ -34,6 +35,6 @@ The visual narrative relies heavily on a grim, atmospheric aesthetic:
 > **Pathing Constraint Note:** This historical version utilizes direct relative file paths (`file:src/resources/...`) optimized for desktop IDE runtime environments. It is not configured as a standalone JAR.
 
 To run this specific build without asset breaking:
-1. **Clone the historical branch:**
-```sh
-   git clone [https://github.com/your-username/haunted-house-game.git](https://github.com/your-username/haunted-house-game.git)
+1. **Clone this repository:**
+   ```sh
+   git clone [https://github.com/your-username/HauntedHouse-v2.0.git](https://github.com/your-username/HauntedHouse-v2.0.git)
