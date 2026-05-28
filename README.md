@@ -8,7 +8,6 @@ A **gothic-industrial text adventure game** built using **JavaFX**, where player
 | First 'Room' of the Game | Room Example 2 |
 | :---: | :---: |
 | ![First Room](src/resources/image/FrontYard.png) | ![Room Example](src/resources/image/Parlor.png) |
-*Note: Replace the image paths above with your actual screenshot URLs if you upload them to your repository layout.*
 
 ## 🏛️ Project Purpose & Context
 This game was developed as one of my final projects for my **STECH** class to synthesize and demonstrate core Java programming paradigms, object-oriented design, dynamic event handling, and desktop GUI construction. 
